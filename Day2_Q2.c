@@ -15,6 +15,5 @@ int main()
     P=2*(L+B);
     
     printf("Area:%d \nPerimeter:%d",A, P);
-    return 0;
-    
+    return 0;    
 }
