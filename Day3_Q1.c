@@ -3,8 +3,7 @@
 #include <stdio.h>
 int main()
 {
-    float T;
-    float F;
+    float T, F;
     printf("Enter Temperature:");
     scanf("%f",&T);
     F = (T*9/5)+32;
@@ -13,3 +12,4 @@ int main()
 
 
 }
+
