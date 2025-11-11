@@ -9,7 +9,4 @@ int main()
     F = (T*9/5)+32;
     printf("Temperature in Fahrenheit:%f",F);
     return 0;
-
-
 }
-
