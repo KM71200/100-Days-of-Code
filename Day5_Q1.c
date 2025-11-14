@@ -16,7 +16,6 @@ int main()
     printf("Enter the time(in years):");
     scanf("%d",&t);
 
-
     SI= (p*r*t)/100;
 
     Amt= p * pow((1+r/100),t);
@@ -25,12 +24,5 @@ int main()
 
     printf("Simple Interest: %d , Compound Interest: %f",SI,CI);
     return 0;
-
-
-
-
-
-
-
-
 }
+
