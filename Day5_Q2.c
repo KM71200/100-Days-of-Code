@@ -14,6 +14,5 @@ int main()
 
     printf("Time in H:M:S format is-  %d:%d:%d", h,m,s);
     return 0;
-
-
 }
+
