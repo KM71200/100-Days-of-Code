@@ -11,8 +11,8 @@ Input 2:
 5
 Output 2:
 Friday
-
 */
+
 #include <stdio.h>
 int main()
 {
@@ -48,4 +48,5 @@ int main()
 
     }
     return 0;
+
 }
