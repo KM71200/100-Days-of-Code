@@ -18,7 +18,6 @@ Output 3:
 Roots are complex
 */
 
-//b*b-4*a*c    >0 real and distinct =0 real and equal  <0 complex
 #include <stdio.h>
 #include <math.h>
 
@@ -29,7 +28,7 @@ int main()
     printf("Enter coefficients of equation a,b,c:");
     scanf("%d %d %d",&a,&b,&c);
 
-    D= (b*b)-(4*a*c);
+    D = (b*b)-(4*a*c);
 
     if (D>0){
         r1= (-b + sqrt(D)) / (2*a);
