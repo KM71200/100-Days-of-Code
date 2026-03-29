@@ -1,40 +1,104 @@
-//Q107: Write a program to take an array arr[] of integers as input, the task is to find the previous greater element for each element of the array in order of their appearance in the array. Previous greater element of an element in the array is the nearest element on the left which is greater than the current element. If there does not exist next greater of current element, then previous greater element for current element is -1.
-
+/**/
 /*
-Sample Test Cases:
-Input 1:
-arr = [1, 3, 2, 4]
-Output 1:
--1, -1, 3, -1
+Problem Statement:
+Convert a binary tree into its mirror image by swapping left and right children at every node.
 
-Input 2:
-arr = [6, 8, 0, 1, 3]
-Output 2:
--1, -1, 8, 8, 8
+Input Format:
+- First line contains integer N
+- Second line contains level-order traversal (-1 indicates NULL)
+
+Output Format:
+- Print inorder traversal of mirrored tree
+
+Example:
+Input:
+7
+1 2 3 4 5 6 7
+
+Output:
+7 3 6 1 5 2 4
+
+Explanation:
+Each node’s left and right children are swapped recursively
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+
+struct TreeNode {
+    int val;
+    struct TreeNode *left, *right;
+};
+
+struct TreeNode* createNode(int val) {
+    struct TreeNode* node = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+    node->val = val;
+    node->left = node->right = NULL;
+    return node;
+}
+
+struct TreeNode* buildTree(int arr[], int n) {
+    if (n == 0 || arr[0] == -1) return NULL;
+
+    struct TreeNode* root = createNode(arr[0]);
+
+    struct TreeNode* q[n];
+    int front = 0, rear = 0;
+
+    q[rear++] = root;
+    int i = 1;
+
+    while (i < n) {
+        struct TreeNode* curr = q[front++];
+
+        if (i < n && arr[i] != -1) {
+            curr->left = createNode(arr[i]);
+            q[rear++] = curr->left;
+        }
+        i++;
+
+        if (i < n && arr[i] != -1) {
+            curr->right = createNode(arr[i]);
+            q[rear++] = curr->right;
+        }
+        i++;
+    }
+
+    return root;
+}
+
+void mirror(struct TreeNode* root) {
+    if (root == NULL) return;
+
+    struct TreeNode* temp = root->left;
+    root->left = root->right;
+    root->right = temp;
+
+    mirror(root->left);
+    mirror(root->right);
+}
+
+void inorder(struct TreeNode* root) {
+    if (root == NULL) return;
+
+    inorder(root->left);
+    printf("%d ", root->val);
+    inorder(root->right);
+}
 
 int main() {
-    int n, i, j, prev;
-    int arr[200];
-
+    int n;
     scanf("%d", &n);
-    for (i = 0; i < n; i++)
+
+    int arr[n];
+    for (int i = 0; i < n; i++)
         scanf("%d", &arr[i]);
 
-    for (i = 0; i < n; i++) {
-        prev = -1;
-        for (j = i - 1; j >= 0; j--) {
-            if (arr[j] > arr[i]) {
-                prev = arr[j];
-                break;
-            }
-        }
-        printf("%d", prev);
-        if (i != n - 1)
-            printf(", ");
-    }
+    struct TreeNode* root = buildTree(arr, n);
+
+    mirror(root);
+
+    inorder(root);
 
     return 0;
 }
